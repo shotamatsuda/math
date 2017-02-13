@@ -3,35 +3,36 @@ Math
 
 A collection of C++ classes and functions to compute common mathematical operations and transformations that interoperate with common creative-coding libraries.
 
-[![Build Status](https://travis-ci.org/takram-design-engineering/takram-math.svg)](https://travis-ci.org/takram-design-engineering/takram-math) [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
+[![Build Status](https://travis-ci.org/shotamatsuda/math.svg)](https://travis-ci.org/shotamatsuda/math) [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
 )](http://mit-license.org)
 
 ### Classes
 
-- [`takram::math::Random`](src/takram/math/random.h)
-- [`takram::math::Vec2`](src/takram/math/vector2.h)
-- [`takram::math::Vec3`](src/takram/math/vector3.h)
-- [`takram::math::Vec4`](src/takram/math/vector4.h)
-- [`takram::math::Size2`](src/takram/math/size2.h)
-- [`takram::math::Size3`](src/takram/math/size3.h)
-- [`takram::math::Line2`](src/takram/math/line2.h)
-- [`takram::math::Line3`](src/takram/math/line3.h)
-- [`takram::math::Triangle2`](src/takram/math/triangle2.h)
-- [`takram::math::Triangle3`](src/takram/math/triangle3.h)
-- [`takram::math::Rect2`](src/takram/math/rectangle2.h)
+- [`shotamatsuda::math::Random`](src/shotamatsuda/math/random.h)
+- [`shotamatsuda::math::Vec2`](src/shotamatsuda/math/vector2.h)
+- [`shotamatsuda::math::Vec3`](src/shotamatsuda/math/vector3.h)
+- [`shotamatsuda::math::Vec4`](src/shotamatsuda/math/vector4.h)
+- [`shotamatsuda::math::Size2`](src/shotamatsuda/math/size2.h)
+- [`shotamatsuda::math::Size3`](src/shotamatsuda/math/size3.h)
+- [`shotamatsuda::math::Line2`](src/shotamatsuda/math/line2.h)
+- [`shotamatsuda::math::Line3`](src/shotamatsuda/math/line3.h)
+- [`shotamatsuda::math::Triangle2`](src/shotamatsuda/math/triangle2.h)
+- [`shotamatsuda::math::Triangle3`](src/shotamatsuda/math/triangle3.h)
+- [`shotamatsuda::math::Rectangle2`](src/shotamatsuda/math/rectangle2.h)
+- [`shotamatsuda::math::Circle2`](src/shotamatsuda/math/circle2.h)
 
 ## Examples
 
 ### Random
 
-[Random](src/takram/math/random.h) is a wrapper of STL’s random number library designed for providing a simpler interface.
+[Random](src/shotamatsuda/math/random.h) is a wrapper of STL’s random number library designed for providing a simpler interface.
 
 ```cpp
 #include <limits>
 
-#include "takram/math/random.h"
+#include "shotamatsuda/math/random.h"
 
-takram::Random<> random;
+shotamatsuda::Random<> random;
 
 // Uniform distribution ranges from 0 to the max int
 random.uniform<int>(std::numeric_limits<int>::max());
@@ -45,11 +46,11 @@ random.gaussian<double>();
 All types in this module promote the return type of arithmetic operators in the same way built-in arithmetic types do. Some member functions like `magnitude()` also promote the return type. The magnitude of a vector of integral type is promoted to double, but that of float remains float.
 
 ```cpp
-#include "takram/math/vector.h"
+#include "shotamatsuda/math/vector.h"
 
-takram::Vec2i veci;
-takram::Vec2d vecd;
-takram::Vec2f vecf;
+shotamatsuda::Vec2i veci;
+shotamatsuda::Vec2d vecd;
+shotamatsuda::Vec2f vecf;
 
 veci + veci;  // Vec2<double>
 veci + vecf;  // Vec2<double>
@@ -60,16 +61,16 @@ vecf + vecd;  // Vec2<double>
 
 ### Implicit Type Conversions
 
-[Vec](src/takram/math/vector.h), [Size](src/takram/math/size.h) and [Rect](src/takram/math/rectangle.h) are implicitly convertible to/from corresponding types of OpenCV, openFrameworks and Cinder.
+[Vec](src/shotamatsuda/math/vector.h), [Size](src/shotamatsuda/math/size.h) and [Rect](src/shotamatsuda/math/rectangle.h) are implicitly convertible to/from corresponding types of OpenCV, openFrameworks and Cinder.
 
 | | OpenCV | openFrameworks | Cinder
 |---------|------------|----------------|----------
-| [Vec2](src/takram/math/vector2.h) | cv::Point | ofVec2f | ci::Vec2
-| [Vec3](src/takram/math/vector3.h) | cv::Point3 | ofVec3f | ci::Vec3
-| [Vec4](src/takram/math/vector4.h) | | ofVec4f | ci::Vec4
-| [Size2](src/takram/math/size2.h) | cv::Size   | |
-| [Size3](src/takram/math/size3.h) | | |
-| [Rect2](src/takram/math/rectangle2.h) | cv::Rect | ofRectangle | ci::Rect
+| [Vec2](src/shotamatsuda/math/vector2.h) | cv::Point | ofVec2f | ci::Vec2
+| [Vec3](src/shotamatsuda/math/vector3.h) | cv::Point3 | ofVec3f | ci::Vec3
+| [Vec4](src/shotamatsuda/math/vector4.h) | | ofVec4f | ci::Vec4
+| [Size2](src/shotamatsuda/math/size2.h) | cv::Size   | |
+| [Size3](src/shotamatsuda/math/size3.h) | | |
+| [Rect2](src/shotamatsuda/math/rectangle2.h) | cv::Rect | ofRectangle | ci::Rect
 
 ## Setup Guide
 
@@ -83,7 +84,7 @@ Run "setup.sh" inside "script" directory to initialize submodules and build depe
 
 The MIT License
 
-Copyright (C) 2015-2016 Shota Matsuda
+Copyright (C) 2013-2017 Shota Matsuda
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

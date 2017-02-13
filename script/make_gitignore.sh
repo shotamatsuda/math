@@ -4,7 +4,7 @@
 #
 #  The MIT License
 #
-#  Copyright (C) 2014-2015 Shota Matsuda
+#  Copyright (C) 2013-2017 Shota Matsuda
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a
 #  copy of this software and associated documentation files (the "Software"),
@@ -28,7 +28,7 @@
 readonly PROJECT_DIR="$(cd "$(dirname "$0")/../"; pwd)"
 readonly FILES=("Global/OSX" "Global/Windows" "Global/Xcode" "VisualStudio")
 
-repository_dir=$(mktemp -d -t "com.takram.gitignore")
+repository_dir=$(mktemp -d -t "com.shotamatsuda.gitignore")
 
 concat_gitignore() {
   for file in "${FILES[@]}"; do

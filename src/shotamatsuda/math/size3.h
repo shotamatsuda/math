@@ -1,9 +1,9 @@
 //
-//  takram/math/size3.h
+//  shotamatsuda/math/size3.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_SIZE3_H_
-#define TAKRAM_MATH_SIZE3_H_
+#ifndef SHOTAMATSUDA_MATH_SIZE3_H_
+#define SHOTAMATSUDA_MATH_SIZE3_H_
 
 #include <cmath>
 #include <cstddef>
@@ -36,20 +36,20 @@
 #include <ostream>
 #include <tuple>
 
-#if TAKRAM_HAS_OPENFRAMEWORKS
+#if SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 #include "ofVec2f.h"
-#endif  // TAKRAM_HAS_OPENFRAMEWORKS
+#endif  // SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
-#if TAKRAM_HAS_CINDER
+#if SHOTAMATSUDA_HAS_CINDER
 #include "cinder/Vec.h"
-#endif  // TAKRAM_HAS_CINDER
+#endif  // SHOTAMATSUDA_HAS_CINDER
 
-#include "takram/math/axis.h"
-#include "takram/math/enablers.h"
-#include "takram/math/promotion.h"
-#include "takram/math/vector.h"
+#include "shotamatsuda/math/axis.h"
+#include "shotamatsuda/math/enablers.h"
+#include "shotamatsuda/math/promotion.h"
+#include "shotamatsuda/math/vector.h"
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
 template <class T, int D>
@@ -90,16 +90,16 @@ class Size<T, 3> final {
   explicit Size(const Vec3<T>& other);
   explicit Size(const Vec4<T>& other);
 
-#if TAKRAM_HAS_OPENFRAMEWORKS
+#if SHOTAMATSUDA_HAS_OPENFRAMEWORKS
   explicit Size(const ofVec3f& other);
   explicit operator ofVec3f() const;
-#endif  // TAKRAM_HAS_OPENFRAMEWORKS
+#endif  // SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
-#if TAKRAM_HAS_CINDER
+#if SHOTAMATSUDA_HAS_CINDER
   template <class U>
   explicit Size(const ci::Vec3<U>& other);
   explicit operator ci::Vec3<T>() const;
-#endif  // TAKRAM_HAS_CINDER
+#endif  // SHOTAMATSUDA_HAS_CINDER
 
   // Copy semantics
   Size(const Size&) = default;
@@ -264,7 +264,7 @@ using Size3i = Size3<int>;
 using Size3f = Size3<float>;
 using Size3d = Size3<double>;
 
-#pragma mark -
+// MARK: -
 
 template <class T>
 inline Size<T, 3>::Size() : vector() {}
@@ -286,13 +286,13 @@ inline Size<T, 3>::Size(const std::tuple<Args...>& tuple) : vector(tuple) {}
 template <class T>
 inline Size<T, 3>::Size(std::initializer_list<T> list) : vector(list) {}
 
-#pragma mark Implicit conversion
+// MARK: Implicit conversion
 
 template <class T>
 template <class U>
 inline Size<T, 3>::Size(const Size3<U>& other) : vector(other.vector) {}
 
-#pragma mark Explicit conversion
+// MARK: Explicit conversion
 
 template <class T>
 template <class U>
@@ -307,7 +307,7 @@ inline Size<T, 3>::Size(const Vec3<T>& other) : vector(other) {}
 template <class T>
 inline Size<T, 3>::Size(const Vec4<T>& other) : vector(other) {}
 
-#if TAKRAM_HAS_OPENFRAMEWORKS
+#if SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
 template <class T>
 inline Size<T, 3>::Size(const ofVec3f& other) : vector(other) {}
@@ -317,9 +317,9 @@ inline Size<T, 3>::operator ofVec3f() const {
   return ofVec3f(vector);
 }
 
-#endif  // TAKRAM_HAS_OPENFRAMEWORKS
+#endif  // SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
-#if TAKRAM_HAS_CINDER
+#if SHOTAMATSUDA_HAS_CINDER
 
 template <class T>
 template <class U>
@@ -330,9 +330,9 @@ inline Size<T, 3>::operator ci::Vec3<T>() const {
   return ci::Vec3<T>(width, height, depth);
 }
 
-#endif  // TAKRAM_HAS_CINDER
+#endif  // SHOTAMATSUDA_HAS_CINDER
 
-#pragma mark Factory
+// MARK: Factory
 
 template <class T>
 inline Size3<T> Size<T, 3>::min() {
@@ -377,7 +377,7 @@ inline Size3<T> Size<T, 3>::random(T min, T max, Random *random) {
   return Size(Vec3<T>::random(min, max, random));
 }
 
-#pragma mark Mutators
+// MARK: Mutators
 
 template <class T>
 inline void Size<T, 3>::set(T value) {
@@ -410,7 +410,7 @@ inline void Size<T, 3>::reset() {
   vector.reset();
 }
 
-#pragma mark Element access
+// MARK: Element access
 
 template <class T>
 inline T& Size<T, 3>::at(int index) {
@@ -432,7 +432,7 @@ inline const T& Size<T, 3>::at(Axis axis) const {
   return at(static_cast<int>(axis));
 }
 
-#pragma mark Comparison
+// MARK: Comparison
 
 template <class T, class U>
 inline bool operator==(const Size3<T>& lhs, const Size3<U>& rhs) {
@@ -470,7 +470,7 @@ inline bool Size<T, 3>::equals(const Size3<U>& other, V tolerance) const {
   return vector.equals(other.vector);
 }
 
-#pragma mark Arithmetic
+// MARK: Arithmetic
 
 template <class T>
 inline Size3<T>& Size<T, 3>::operator+=(const Size& other) {
@@ -525,7 +525,7 @@ inline Size3<Promote<T, U>> operator/(const Size3<T>& lhs,
   return Size3<Promote<T, U>>(lhs.vector / rhs.vector);
 }
 
-#pragma mark Scalar arithmetic
+// MARK: Scalar arithmetic
 
 template <class T>
 inline Size3<T>& Size<T, 3>::operator+=(T scalar) {
@@ -591,7 +591,7 @@ inline Size3<Promote<T, U>> operator/(T lhs, const Size3<U>& rhs) {
   return Size3<Promote<T, U>>(lhs / rhs.vector);
 }
 
-#pragma mark Vector arithmetic
+// MARK: Vector arithmetic
 
 template <class T>
 inline Size3<T>& Size<T, 3>::operator+=(const Vec3<T>& other) {
@@ -657,7 +657,7 @@ inline Vec3<Promote<T, U>> operator/(const Vec3<T>& lhs, const Size3<U>& rhs) {
   return lhs / rhs.vector;
 }
 
-#pragma mark Attributes
+// MARK: Attributes
 
 template <class T>
 inline Promote<T> Size<T, 3>::aspectXY() const {
@@ -684,7 +684,7 @@ inline Promote<T> Size<T, 3>::diagonal() const {
   return vector.magnitude();
 }
 
-#pragma mark Stream
+// MARK: Stream
 
 template <class T>
 inline std::ostream& operator<<(std::ostream& os, const Size3<T>& size) {
@@ -699,14 +699,14 @@ using math::Size3i;
 using math::Size3f;
 using math::Size3d;
 
-}  // namespace takram
+}  // namespace shotamatsuda
 
 template <class T>
-struct std::hash<takram::math::Size3<T>> {
-  std::size_t operator()(const takram::math::Size3<T>& value) const {
+struct std::hash<shotamatsuda::math::Size3<T>> {
+  std::size_t operator()(const shotamatsuda::math::Size3<T>& value) const {
     std::hash<T> hash;
     return (hash(value.w) << 0) ^ (hash(value.h) << 1) ^ (hash(value.d) << 2);
   }
 };
 
-#endif  // TAKRAM_MATH_SIZE3_H_
+#endif  // SHOTAMATSUDA_MATH_SIZE3_H_

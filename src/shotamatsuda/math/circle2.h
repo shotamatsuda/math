@@ -1,9 +1,9 @@
 //
-//  takram/math/circle2.h
+//  shotamatsuda/math/circle2.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,17 +25,17 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_CIRCLE2_H_
-#define TAKRAM_MATH_CIRCLE2_H_
+#ifndef SHOTAMATSUDA_MATH_CIRCLE2_H_
+#define SHOTAMATSUDA_MATH_CIRCLE2_H_
 
 #include <cstddef>
 #include <functional>
 
-#include "takram/math/constants.h"
-#include "takram/math/promotion.h"
-#include "takram/math/vector.h"
+#include "shotamatsuda/math/constants.h"
+#include "shotamatsuda/math/promotion.h"
+#include "shotamatsuda/math/vector.h"
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
 template <class T, int D>
@@ -96,7 +96,7 @@ using Circle2i = Circle2<int>;
 using Circle2f = Circle2<float>;
 using Circle2d = Circle2<double>;
 
-#pragma mark -
+// MARK: -
 
 template <class T>
 inline Circle<T, 2>::Circle() : center(), radius() {}
@@ -118,7 +118,7 @@ inline Circle<T, 2>::Circle(const Vec2<T>& a,
   set(a, b, c);
 }
 
-#pragma mark Mutators
+// MARK: Mutators
 
 template <class T>
 inline void Circle<T, 2>::set(const Vec2<T>& center, T radius) {
@@ -144,7 +144,7 @@ inline void Circle<T, 2>::reset() {
   *this = Circle();
 }
 
-#pragma mark Comparison
+// MARK: Comparison
 
 template <class T, class U>
 inline bool operator==(const Circle2<T>& lhs, const Circle2<U>& rhs) {
@@ -185,7 +185,7 @@ inline bool Circle<T, 2>::equals(const Circle2<U>& other, V tolerance) const {
           (center + radius).equals((other.center + other.radius), tolerance));
 }
 
-#pragma mark Attributes
+// MARK: Attributes
 
 template <class T>
 inline Promote<T> Circle<T, 2>::diameter() const {
@@ -202,7 +202,7 @@ inline Promote<T> Circle<T, 2>::area() const {
   return radius * radius * pi<T>();
 }
 
-#pragma mark Canonicalization
+// MARK: Canonicalization
 
 template <class T>
 inline Circle2<T>& Circle<T, 2>::canonicalize() {
@@ -217,7 +217,7 @@ inline Circle2<Promote<T>> Circle<T, 2>::canonicalized() const {
   return Circle2<Promote<T>>(*this).canonicalize();
 }
 
-#pragma mark Containment
+// MARK: Containment
 
 template <class T>
 template <class U>
@@ -232,14 +232,14 @@ using math::Circle2i;
 using math::Circle2f;
 using math::Circle2d;
 
-}  // namespace takram
+}  // namespace shotamatsuda
 
 template <class T>
-struct std::hash<takram::math::Circle2<T>> {
-  std::size_t operator()(const takram::math::Circle2<T>& value) const {
-    return ((std::hash<takram::math::Vec2<T>>()(value.center) << 0) ^
+struct std::hash<shotamatsuda::math::Circle2<T>> {
+  std::size_t operator()(const shotamatsuda::math::Circle2<T>& value) const {
+    return ((std::hash<shotamatsuda::math::Vec2<T>>()(value.center) << 0) ^
             (std::hash<T>()(value.radius) << 1));
   }
 };
 
-#endif  // TAKRAM_MATH_CIRCLE2_H_
+#endif  // SHOTAMATSUDA_MATH_CIRCLE2_H_

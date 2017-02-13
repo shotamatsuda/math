@@ -3,7 +3,7 @@
 #
 #  The MIT License
 #
-#  Copyright (C) 2014-2015 Shota Matsuda
+#  Copyright (C) 2013-2017 Shota Matsuda
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a
 #  copy of this software and associated documentation files (the "Software"),
@@ -26,7 +26,7 @@
 
 # Project settings
 cmake_minimum_required(VERSION 2.8)
-project(takram_math CXX C)
+project(shota_math CXX C)
 
 # Configuration types
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "configs" FORCE)
@@ -83,4 +83,4 @@ endif()
 # Install settings
 install(TARGETS "${PROJECT_NAME}_static" DESTINATION "lib")
 install(TARGETS "${PROJECT_NAME}_shared" DESTINATION "lib")
-install(DIRECTORY "src/takram" DESTINATION "include" FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY "src/shotamatsuda" DESTINATION "include" FILES_MATCHING PATTERN "*.h")

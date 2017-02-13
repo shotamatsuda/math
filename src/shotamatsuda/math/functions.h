@@ -1,9 +1,9 @@
 //
-//  takram/math/functions.h
+//  shotamatsuda/math/functions.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,10 +25,10 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_FUNCTIONS_H_
-#define TAKRAM_MATH_FUNCTIONS_H_
+#ifndef SHOTAMATSUDA_MATH_FUNCTIONS_H_
+#define SHOTAMATSUDA_MATH_FUNCTIONS_H_
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
 template <class T, class U, class V>
@@ -44,7 +44,7 @@ constexpr T constrain(T value, U min, V max);
 template <class T, class U, class V>
 constexpr T map(T value, U min1, U max1, V min2, V max2);
 
-#pragma mark -
+// MARK: -
 
 template <class T, class U, class V>
 constexpr T lerp(T start, U stop, V amount) {
@@ -77,6 +77,6 @@ constexpr T map(T value, U min1, U max1, V min2, V max2) {
 }
 
 }  // namespace math
-}  // namespace takram
+}  // namespace shotamatsuda
 
-#endif  // TAKRAM_MATH_FUNCTIONS_H_
+#endif  // SHOTAMATSUDA_MATH_FUNCTIONS_H_

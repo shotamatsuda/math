@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -26,9 +26,9 @@
 
 #include "gtest/gtest.h"
 
-#include "takram/math.h"
+#include "shotamatsuda/math.h"
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
 template class Random<>;
@@ -45,4 +45,4 @@ template class Rect<double, 2>;
 template class Circle<double, 2>;
 
 }  // namespace math
-}  // namespace takram
+}  // namespace shotamatsuda

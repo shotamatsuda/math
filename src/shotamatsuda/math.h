@@ -1,9 +1,9 @@
 //
-//  takram/math/roots.h
+//  shotamatsuda/math.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,50 +25,29 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_ROOTS_H_
-#define TAKRAM_MATH_ROOTS_H_
+#ifndef SHOTAMATSUDA_MATH_H_
+#define SHOTAMATSUDA_MATH_H_
 
-#include <cmath>
-
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
-template <class A, class B, class Iterator>
-unsigned int solveLinear(A a, B b, Iterator result);
-template <class A, class B, class C, class Iterator>
-unsigned int solveQuadratic(A a, B b, C c, Iterator result);
-
-#pragma mark -
-
-template <class A, class B, class Iterator>
-inline unsigned int solveLinear(A a, B b, Iterator result) {
-  if (!a) {
-    return 0;
-  }
-  *result = -b / a;
-  return 1;
-}
-
-template <class A, class B, class C, class Iterator>
-inline unsigned int solveQuadratic(A a, B b, C c, Iterator result) {
-  if (!a) {
-    return solveLinear(b, c, result);
-  }
-  const auto discriminant = b * b - 4 * a * c;
-  if (discriminant < 0) {
-    return 0;
-  }
-  if (!discriminant) {
-    *result = -b / (2 * a);
-    return 1;
-  }
-  const auto d = std::sqrt(discriminant);
-  *result = (-b - d) / (2 * a);
-  *++result = (-b + d) / (2 * a);
-  return 2;
-}
+extern const double version_number;
+extern const unsigned char version_string[];
 
 }  // namespace math
-}  // namespace takram
+}  // namespace shotamatsuda
 
-#endif  // TAKRAM_MATH_ROOTS_H_
+#include "shotamatsuda/math/axis.h"
+#include "shotamatsuda/math/circle.h"
+#include "shotamatsuda/math/constants.h"
+#include "shotamatsuda/math/functions.h"
+#include "shotamatsuda/math/line.h"
+#include "shotamatsuda/math/promotion.h"
+#include "shotamatsuda/math/random.h"
+#include "shotamatsuda/math/rectangle.h"
+#include "shotamatsuda/math/roots.h"
+#include "shotamatsuda/math/size.h"
+#include "shotamatsuda/math/triangle.h"
+#include "shotamatsuda/math/vector.h"
+
+#endif  // SHOTAMATSUDA_MATH_H_

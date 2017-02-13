@@ -1,9 +1,9 @@
 //
-//  takram/math.h
+//  shotamatsuda/math/roots.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,29 +25,50 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_H_
-#define TAKRAM_MATH_H_
+#ifndef SHOTAMATSUDA_MATH_ROOTS_H_
+#define SHOTAMATSUDA_MATH_ROOTS_H_
 
-namespace takram {
+#include <cmath>
+
+namespace shotamatsuda {
 namespace math {
 
-extern const double version_number;
-extern const unsigned char version_string[];
+template <class A, class B, class Iterator>
+unsigned int solveLinear(A a, B b, Iterator result);
+template <class A, class B, class C, class Iterator>
+unsigned int solveQuadratic(A a, B b, C c, Iterator result);
+
+// MARK: -
+
+template <class A, class B, class Iterator>
+inline unsigned int solveLinear(A a, B b, Iterator result) {
+  if (!a) {
+    return 0;
+  }
+  *result = -b / a;
+  return 1;
+}
+
+template <class A, class B, class C, class Iterator>
+inline unsigned int solveQuadratic(A a, B b, C c, Iterator result) {
+  if (!a) {
+    return solveLinear(b, c, result);
+  }
+  const auto discriminant = b * b - 4 * a * c;
+  if (discriminant < 0) {
+    return 0;
+  }
+  if (!discriminant) {
+    *result = -b / (2 * a);
+    return 1;
+  }
+  const auto d = std::sqrt(discriminant);
+  *result = (-b - d) / (2 * a);
+  *++result = (-b + d) / (2 * a);
+  return 2;
+}
 
 }  // namespace math
-}  // namespace takram
+}  // namespace shotamatsuda
 
-#include "takram/math/axis.h"
-#include "takram/math/circle.h"
-#include "takram/math/constants.h"
-#include "takram/math/functions.h"
-#include "takram/math/line.h"
-#include "takram/math/promotion.h"
-#include "takram/math/random.h"
-#include "takram/math/rectangle.h"
-#include "takram/math/roots.h"
-#include "takram/math/size.h"
-#include "takram/math/triangle.h"
-#include "takram/math/vector.h"
-
-#endif  // TAKRAM_MATH_H_
+#endif  // SHOTAMATSUDA_MATH_ROOTS_H_

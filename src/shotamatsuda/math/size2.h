@@ -1,9 +1,9 @@
 //
-//  takram/math/size2.h
+//  shotamatsuda/math/size2.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_SIZE2_H_
-#define TAKRAM_MATH_SIZE2_H_
+#ifndef SHOTAMATSUDA_MATH_SIZE2_H_
+#define SHOTAMATSUDA_MATH_SIZE2_H_
 
 #include <cmath>
 #include <cstddef>
@@ -36,28 +36,28 @@
 #include <ostream>
 #include <tuple>
 
-#if TAKRAM_HAS_OPENCV
+#if SHOTAMATSUDA_HAS_OPENCV
 #include "opencv2/core/core.hpp"
-#endif  // TAKRAM_HAS_OPENCV
+#endif  // SHOTAMATSUDA_HAS_OPENCV
 
-#if TAKRAM_HAS_OPENFRAMEWORKS
+#if SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 #include "ofVec2f.h"
-#endif  // TAKRAM_HAS_OPENFRAMEWORKS
+#endif  // SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
-#if TAKRAM_HAS_CINDER
+#if SHOTAMATSUDA_HAS_CINDER
 #include "cinder/Vec.h"
-#endif  // TAKRAM_HAS_CINDER
+#endif  // SHOTAMATSUDA_HAS_CINDER
 
-#if TAKRAM_HAS_COREGRAPHICS
+#if SHOTAMATSUDA_HAS_COREGRAPHICS
 #include <CoreGraphics/CoreGraphics.h>
-#endif  // TAKRAM_HAS_COREGRAPHICS
+#endif  // SHOTAMATSUDA_HAS_COREGRAPHICS
 
-#include "takram/math/axis.h"
-#include "takram/math/enablers.h"
-#include "takram/math/promotion.h"
-#include "takram/math/vector.h"
+#include "shotamatsuda/math/axis.h"
+#include "shotamatsuda/math/enablers.h"
+#include "shotamatsuda/math/promotion.h"
+#include "shotamatsuda/math/vector.h"
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
 template <class T, int D>
@@ -91,16 +91,16 @@ class Size<T, 2> final {
   template <class U>
   Size(const Size2<U>& other);
 
-#if TAKRAM_HAS_OPENCV
+#if SHOTAMATSUDA_HAS_OPENCV
   template <class U>
   Size(const cv::Size_<U>& other);
   operator cv::Size_<T>() const;
-#endif  // TAKRAM_HAS_OPENCV
+#endif  // SHOTAMATSUDA_HAS_OPENCV
 
-#if TAKRAM_HAS_COREGRAPHICS
+#if SHOTAMATSUDA_HAS_COREGRAPHICS
   Size(const CGSize& other);
   operator CGSize() const;
-#endif  // TAKRAM_HAS_COREGRAPHICS
+#endif  // SHOTAMATSUDA_HAS_COREGRAPHICS
 
   // Explicit conversion
   template <class U>
@@ -109,16 +109,16 @@ class Size<T, 2> final {
   explicit Size(const Vec3<T>& other);
   explicit Size(const Vec4<T>& other);
 
-#if TAKRAM_HAS_OPENFRAMEWORKS
+#if SHOTAMATSUDA_HAS_OPENFRAMEWORKS
   explicit Size(const ofVec2f& other);
   explicit operator ofVec2f() const;
-#endif  // TAKRAM_HAS_OPENFRAMEWORKS
+#endif  // SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
-#if TAKRAM_HAS_CINDER
+#if SHOTAMATSUDA_HAS_CINDER
   template <class U>
   explicit Size(const ci::Vec2<U>& other);
   explicit operator ci::Vec2<T>() const;
-#endif  // TAKRAM_HAS_CINDER
+#endif  // SHOTAMATSUDA_HAS_CINDER
 
   // Copy semantics
   Size(const Size&) = default;
@@ -281,7 +281,7 @@ using Size2i = Size2<int>;
 using Size2f = Size2<float>;
 using Size2d = Size2<double>;
 
-#pragma mark -
+// MARK: -
 
 template <class T>
 inline Size<T, 2>::Size() : vector() {}
@@ -302,13 +302,13 @@ inline Size<T, 2>::Size(const std::tuple<Args...>& tuple) : vector(tuple) {}
 template <class T>
 inline Size<T, 2>::Size(std::initializer_list<T> list) : vector(list) {}
 
-#pragma mark Implicit conversion
+// MARK: Implicit conversion
 
 template <class T>
 template <class U>
 inline Size<T, 2>::Size(const Size2<U>& other) : vector(other.vector) {}
 
-#if TAKRAM_HAS_OPENCV
+#if SHOTAMATSUDA_HAS_OPENCV
 
 template <class T>
 template <class U>
@@ -320,9 +320,9 @@ inline Size<T, 2>::operator cv::Size_<T>() const {
   return cv::Size_<T>(width, height);
 }
 
-#endif  // TAKRAM_HAS_OPENCV
+#endif  // SHOTAMATSUDA_HAS_OPENCV
 
-#if TAKRAM_HAS_COREGRAPHICS
+#if SHOTAMATSUDA_HAS_COREGRAPHICS
 
 template <class T>
 inline Size<T, 2>::Size(const CGSize& other)
@@ -333,9 +333,9 @@ inline Size<T, 2>::operator CGSize() const {
   return CGSizeMake(width, height);
 }
 
-#endif  // TAKRAM_HAS_COREGRAPHICS
+#endif  // SHOTAMATSUDA_HAS_COREGRAPHICS
 
-#pragma mark Explicit conversion
+// MARK: Explicit conversion
 
 template <class T>
 template <class U>
@@ -350,7 +350,7 @@ inline Size<T, 2>::Size(const Vec3<T>& other) : vector(other) {}
 template <class T>
 inline Size<T, 2>::Size(const Vec4<T>& other) : vector(other) {}
 
-#if TAKRAM_HAS_OPENFRAMEWORKS
+#if SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
 template <class T>
 inline Size<T, 2>::Size(const ofVec2f& other) : vector(other) {}
@@ -360,9 +360,9 @@ inline Size<T, 2>::operator ofVec2f() const {
   return ofVec2f(vector);
 }
 
-#endif  // TAKRAM_HAS_OPENFRAMEWORKS
+#endif  // SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
-#if TAKRAM_HAS_CINDER
+#if SHOTAMATSUDA_HAS_CINDER
 
 template <class T>
 template <class U>
@@ -373,9 +373,9 @@ inline Size<T, 2>::operator ci::Vec2<T>() const {
   return ci::Vec2<T>(vector);
 }
 
-#endif  // TAKRAM_HAS_CINDER
+#endif  // SHOTAMATSUDA_HAS_CINDER
 
-#pragma mark Factory
+// MARK: Factory
 
 template <class T>
 inline Size2<T> Size<T, 2>::min() {
@@ -420,7 +420,7 @@ inline Size2<T> Size<T, 2>::random(T min, T max, Random *random) {
   return Size(Vec2<T>::random(min, max, random));
 }
 
-#pragma mark Mutators
+// MARK: Mutators
 
 template <class T>
 inline void Size<T, 2>::set(T value) {
@@ -453,7 +453,7 @@ inline void Size<T, 2>::reset() {
   vector.reset();
 }
 
-#pragma mark Element access
+// MARK: Element access
 
 template <class T>
 inline T& Size<T, 2>::at(int index) {
@@ -475,7 +475,7 @@ inline const T& Size<T, 2>::at(Axis axis) const {
   return at(static_cast<int>(axis));
 }
 
-#pragma mark Comparison
+// MARK: Comparison
 
 template <class T, class U>
 inline bool operator==(const Size2<T>& lhs, const Size2<U>& rhs) {
@@ -513,7 +513,7 @@ inline bool Size<T, 2>::equals(const Size2<U>& other, V tolerance) const {
   return vector.equals(other.vector);
 }
 
-#pragma mark Arithmetic
+// MARK: Arithmetic
 
 template <class T>
 inline Size2<T>& Size<T, 2>::operator+=(const Size& other) {
@@ -568,7 +568,7 @@ inline Size2<Promote<T, U>> operator/(const Size2<T>& lhs,
   return Size2<Promote<T, U>>(lhs.vector / rhs.vector);
 }
 
-#pragma mark Scalar arithmetic
+// MARK: Scalar arithmetic
 
 template <class T>
 inline Size2<T>& Size<T, 2>::operator+=(T scalar) {
@@ -634,7 +634,7 @@ inline Size2<Promote<T, U>> operator/(T lhs, const Size2<U>& rhs) {
   return Size2<Promote<T, U>>(lhs / rhs.vector);
 }
 
-#pragma mark Vector arithmetic
+// MARK: Vector arithmetic
 
 template <class T>
 inline Size2<T>& Size<T, 2>::operator+=(const Vec2<T>& other) {
@@ -700,7 +700,7 @@ inline Vec2<Promote<T, U>> operator/(const Vec2<T>& lhs, const Size2<U>& rhs) {
   return lhs / rhs.vector;
 }
 
-#pragma mark Attributes
+// MARK: Attributes
 
 template <class T>
 inline Promote<T> Size<T, 2>::aspect() const {
@@ -717,7 +717,7 @@ inline Promote<T> Size<T, 2>::diagonal() const {
   return vector.magnitude();
 }
 
-#pragma mark Stream
+// MARK: Stream
 
 template <class T>
 inline std::ostream& operator<<(std::ostream& os, const Size2<T>& size) {
@@ -732,14 +732,14 @@ using math::Size2i;
 using math::Size2f;
 using math::Size2d;
 
-}  // namespace takram
+}  // namespace shotamatsuda
 
 template <class T>
-struct std::hash<takram::math::Size2<T>> {
-  std::size_t operator()(const takram::math::Size2<T>& value) const {
+struct std::hash<shotamatsuda::math::Size2<T>> {
+  std::size_t operator()(const shotamatsuda::math::Size2<T>& value) const {
     std::hash<T> hash;
     return (hash(value.w) << 0) ^ (hash(value.h) << 1);
   }
 };
 
-#endif  // TAKRAM_MATH_SIZE2_H_
+#endif  // SHOTAMATSUDA_MATH_SIZE2_H_

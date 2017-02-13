@@ -1,9 +1,9 @@
 //
-//  takram/math/vector4.h
+//  shotamatsuda/math/vector4.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_VECTOR4_H_
-#define TAKRAM_MATH_VECTOR4_H_
+#ifndef SHOTAMATSUDA_MATH_VECTOR4_H_
+#define SHOTAMATSUDA_MATH_VECTOR4_H_
 
 #include <cassert>
 #include <cmath>
@@ -38,20 +38,20 @@
 #include <ostream>
 #include <tuple>
 
-#if TAKRAM_HAS_OPENFRAMEWORKS
+#if SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 #include "ofVec4f.h"
-#endif  // TAKRAM_HAS_OPENFRAMEWORKS
+#endif  // SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
-#if TAKRAM_HAS_CINDER
+#if SHOTAMATSUDA_HAS_CINDER
 #include "cinder/Vec.h"
-#endif  // TAKRAM_HAS_CINDER
+#endif  // SHOTAMATSUDA_HAS_CINDER
 
-#include "takram/math/axis.h"
-#include "takram/math/enablers.h"
-#include "takram/math/promotion.h"
-#include "takram/math/random.h"
+#include "shotamatsuda/math/axis.h"
+#include "shotamatsuda/math/enablers.h"
+#include "shotamatsuda/math/promotion.h"
+#include "shotamatsuda/math/random.h"
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
 template <class T, int D>
@@ -87,17 +87,17 @@ class Vec<T, 4> final {
   template <class U>
   Vec(const Vec4<U>& other);
 
-#if TAKRAM_HAS_OPENFRAMEWORKS
+#if SHOTAMATSUDA_HAS_OPENFRAMEWORKS
   Vec(const ofVec4f& other);
   operator ofVec4f() const;
-#endif  // TAKRAM_HAS_OPENFRAMEWORKS
+#endif  // SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
-#if TAKRAM_HAS_CINDER
+#if SHOTAMATSUDA_HAS_CINDER
   template <class U>
   Vec(const ci::Vec4<U>& other);
   template <class U>
   operator ci::Vec4<U>() const;
-#endif  // TAKRAM_HAS_CINDER
+#endif  // SHOTAMATSUDA_HAS_CINDER
 
   // Explicit conversion
   template <class U>
@@ -105,12 +105,12 @@ class Vec<T, 4> final {
   template <class U>
   explicit Vec(const Vec3<U>& other);
 
-#if TAKRAM_HAS_OPENCV
+#if SHOTAMATSUDA_HAS_OPENCV
   template <class U>
   explicit Vec(const cv::Vec<U, 4>& other);
   template <class U>
   explicit operator cv::Vec<U, 4>() const;
-#endif  // TAKRAM_HAS_OPENCV
+#endif  // SHOTAMATSUDA_HAS_OPENCV
 
   // Copy semantics
   Vec(const Vec&) = default;
@@ -300,7 +300,7 @@ using Vector4i = Vec4i;
 using Vector4f = Vec4f;
 using Vector4d = Vec4d;
 
-#pragma mark -
+// MARK: -
 
 template <class T>
 inline Vec<T, 4>::Vec() : x(), y(), z(), w() {}
@@ -327,7 +327,7 @@ inline Vec<T, 4>::Vec(std::initializer_list<T> list) {
   set(list);
 }
 
-#pragma mark Implicit conversion
+// MARK: Implicit conversion
 
 template <class T>
 template <class U>
@@ -337,7 +337,7 @@ inline Vec<T, 4>::Vec(const Vec4<U>& other)
       z(other.z),
       w(other.w) {}
 
-#if TAKRAM_HAS_OPENFRAMEWORKS
+#if SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
 template <class T>
 inline Vec<T, 4>::Vec(const ofVec4f& other)
@@ -351,9 +351,9 @@ inline Vec<T, 4>::operator ofVec4f() const {
   return ofVec4f(x, y, z, w);
 }
 
-#endif  // TAKRAM_HAS_OPENFRAMEWORKS
+#endif  // SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
-#if TAKRAM_HAS_CINDER
+#if SHOTAMATSUDA_HAS_CINDER
 
 template <class T>
 template <class U>
@@ -369,9 +369,9 @@ inline Vec<T, 4>::operator ci::Vec4<U>() const {
   return ci::Vec4<U>(x, y, z, w);
 }
 
-#endif  // TAKRAM_HAS_CINDER
+#endif  // SHOTAMATSUDA_HAS_CINDER
 
-#pragma mark Explicit conversion
+// MARK: Explicit conversion
 
 template <class T>
 template <class U>
@@ -389,7 +389,7 @@ inline Vec<T, 4>::Vec(const Vec3<U>& other)
       z(other.z),
       w() {}
 
-#if TAKRAM_HAS_OPENCV
+#if SHOTAMATSUDA_HAS_OPENCV
 
 template <class T>
 template <class U>
@@ -401,9 +401,9 @@ inline Vec<T, 4>::operator cv::Vec<U, 4>() const {
   return cv::Vec<U, 4>(x, y, z, w);
 }
 
-#endif  // TAKRAM_HAS_OPENCV
+#endif  // SHOTAMATSUDA_HAS_OPENCV
 
-#pragma mark Factory
+// MARK: Factory
 
 template <class T>
 inline Vec4<T> Vec<T, 4>::min() {
@@ -475,7 +475,7 @@ inline Vec4<T> Vec<T, 4>::random(T min, T max, Random *random) {
              random->template uniform<T>(min, max));
 }
 
-#pragma mark Mutators
+// MARK: Mutators
 
 template <class T>
 inline void Vec<T, 4>::set(T value) {
@@ -529,7 +529,7 @@ inline void Vec<T, 4>::reset() {
   *this = Vec();
 }
 
-#pragma mark Element access
+// MARK: Element access
 
 template <class T>
 inline T& Vec<T, 4>::at(int index) {
@@ -569,7 +569,7 @@ inline const T& Vec<T, 4>::at(Axis axis) const {
   return at(static_cast<int>(axis));
 }
 
-#pragma mark Comparison
+// MARK: Comparison
 
 template <class T, class U>
 inline bool operator==(const Vec4<T>& lhs, const Vec4<U>& rhs) {
@@ -614,7 +614,7 @@ inline bool Vec<T, 4>::equals(const Vec4<U>& other, V tolerance) const {
           std::abs(w - other.w) <= tolerance);
 }
 
-#pragma mark Arithmetic
+// MARK: Arithmetic
 
 template <class T>
 inline Vec4<T>& Vec<T, 4>::operator+=(const Vec& other) {
@@ -697,7 +697,7 @@ inline Vec4<Promote<T, U>> operator/(const Vec4<T>& lhs, const Vec4<U>& rhs) {
                  static_cast<V>(lhs.w) / rhs.w);
 }
 
-#pragma mark Scalar arithmetic
+// MARK: Scalar arithmetic
 
 template <class T>
 inline Vec4<T>& Vec<T, 4>::operator+=(T scalar) {
@@ -807,7 +807,7 @@ inline Vec4<Promote<T, U>> operator/(T lhs, const Vec4<U>& rhs) {
                  static_cast<V>(lhs) / rhs.w);
 }
 
-#pragma mark Attributes
+// MARK: Attributes
 
 template <class T>
 inline Promote<T> Vec<T, 4>::headingXY() const {
@@ -830,7 +830,7 @@ inline Promote<T, U> Vec<T, 4>::angle(const Vec4<U>& other) const {
   return std::acos(normalized().dot(other.normalized()));
 }
 
-#pragma mark Magnitude
+// MARK: Magnitude
 
 template <class T>
 inline Promote<T> Vec<T, 4>::magnitude() const {
@@ -858,7 +858,7 @@ inline Vec4<Promote<T, U>> Vec<T, 4>::limited(U limit) const {
   return Vec4<Promote<T, U>>(*this).limit(limit);
 }
 
-#pragma mark Normalization
+// MARK: Normalization
 
 template <class T>
 inline Vec4<T>& Vec<T, 4>::normalize() {
@@ -874,7 +874,7 @@ inline Vec4<Promote<T>> Vec<T, 4>::normalized() const {
   return Vec4<Promote<T>>(*this).normalize();
 }
 
-#pragma mark Inversion
+// MARK: Inversion
 
 template <class T>
 inline Vec4<T>& Vec<T, 4>::invert() {
@@ -890,7 +890,7 @@ inline Vec4<Promote<T>> Vec<T, 4>::inverted() const {
   return Vec4<Promote<T>>(*this).invert();
 }
 
-#pragma mark Distance
+// MARK: Distance
 
 template <class T>
 template <class U>
@@ -904,7 +904,7 @@ inline Promote<T, U> Vec<T, 4>::distanceSquared(const Vec4<U>& other) const {
   return (*this - other).magnitudeSquared();
 }
 
-#pragma mark Products
+// MARK: Products
 
 template <class T>
 template <class U>
@@ -919,7 +919,7 @@ inline Vec4<Promote<T, U>> Vec<T, 4>::cross(const Vec4<U>& other) const {
   return Vec3<T>(*this).cross(Vec3<U>(other));
 }
 
-#pragma mark Interpolation
+// MARK: Interpolation
 
 template <class T>
 template <class V, class U>
@@ -931,7 +931,7 @@ inline Vec4<Promote<T, U>> Vec<T, 4>::lerp(const Vec4<U>& other,
                              w + (other.w - w) * factor);
 }
 
-#pragma mark Jitter
+// MARK: Jitter
 
 template <class T>
 template <class U>
@@ -966,7 +966,7 @@ inline Vec4<Promote<T, U>> Vec<T, 4>::jittered(const Vec4<U>& vector,
   return Vec4<Promote<T, U>>(*this).jitter(vector, random);
 }
 
-#pragma mark Stream
+// MARK: Stream
 
 template <class T>
 inline std::ostream& operator<<(std::ostream& os, const Vec4<T>& vector) {
@@ -988,11 +988,11 @@ using math::Vector4i;
 using math::Vector4f;
 using math::Vector4d;
 
-}  // namespace takram
+}  // namespace shotamatsuda
 
 template <class T>
-struct std::hash<takram::math::Vec4<T>> {
-  std::size_t operator()(const takram::math::Vec4<T>& value) const {
+struct std::hash<shotamatsuda::math::Vec4<T>> {
+  std::size_t operator()(const shotamatsuda::math::Vec4<T>& value) const {
     std::hash<T> hash;
     return ((hash(value.x) << 0) ^
             (hash(value.y) << 1) ^
@@ -1001,4 +1001,4 @@ struct std::hash<takram::math::Vec4<T>> {
   }
 };
 
-#endif  // TAKRAM_MATH_VECTOR4_H_
+#endif  // SHOTAMATSUDA_MATH_VECTOR4_H_

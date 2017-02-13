@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2014-2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,17 +25,11 @@
 //
 
 // Boost
-BOOST_DIR = /usr/local
 BOOST_HEADER_SEARCH_PATHS = "$(BOOST_DIR)/include"
-
-// OpenCV
-OPENCV_DIR = /usr/local
 OPENCV_HEADER_SEARCH_PATHS = "$(OPENCV_DIR)/include"
-
-// openFrameworks
-OPENFRAMEWORKS_DIR = $(TAKRAM_MATH_DIR)/../openframeworks
 OPENFRAMEWORKS_HEADER_SEARCH_PATHS = "$(OPENFRAMEWORKS_DIR)/libs/openFrameworks/**" "$(OPENFRAMEWORKS_DIR)/libs/freetype/include" "$(OPENFRAMEWORKS_DIR)/libs/freetype/include/freetype2" "$(OPENFRAMEWORKS_DIR)/libs/poco/include" "$(OPENFRAMEWORKS_DIR)/libs/fmodex/include" "$(OPENFRAMEWORKS_DIR)/libs/glew/include" "$(OPENFRAMEWORKS_DIR)/libs/FreeImage/include" "$(OPENFRAMEWORKS_DIR)/libs/tess2/include" "$(OPENFRAMEWORKS_DIR)/libs/cairo/include/cairo" "$(OPENFRAMEWORKS_DIR)/libs/rtAudio/include" "$(OPENFRAMEWORKS_DIR)/libs/glfw/include"
-
-// Cinder
-CINDER_DIR = $(TAKRAM_MATH_DIR)/../cinder
 CINDER_HEADER_SEARCH_PATHS = "$(CINDER_DIR)/include"
+
+// Search Paths
+SHOTAMATSUDA_MATH_HEADER_SEARCH_PATHS = $(BOOST_HEADER_SEARCH_PATHS) $(OPENCV_HEADER_SEARCH_PATHS) $(OPENFRAMEWORKS_HEADER_SEARCH_PATHS) $(CINDER_HEADER_SEARCH_PATHS)
+SHOTAMATSUDA_MATH_USER_HEADER_SEARCH_PATHS = "$(SHOTAMATSUDA_MATH_DIR)/src" "$(SHOTAMATSUDA_MATH_DIR)/lib"

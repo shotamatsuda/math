@@ -1,9 +1,9 @@
 //
-//  takram/math/vector.h
+//  shotamatsuda/math/vector.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,40 +25,40 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_VECTOR_H_
-#define TAKRAM_MATH_VECTOR_H_
+#ifndef SHOTAMATSUDA_MATH_VECTOR_H_
+#define SHOTAMATSUDA_MATH_VECTOR_H_
 
-#if TAKRAM_HAS_BOOST
+#if SHOTAMATSUDA_HAS_BOOST
 #include <boost/polygon/isotropy.hpp>
 #include <boost/polygon/point_concept.hpp>
-#endif  // TAKRAM_HAS_BOOST
+#endif  // SHOTAMATSUDA_HAS_BOOST
 
-#include "takram/math/vector2.h"
-#include "takram/math/vector3.h"
-#include "takram/math/vector4.h"
+#include "shotamatsuda/math/vector2.h"
+#include "shotamatsuda/math/vector3.h"
+#include "shotamatsuda/math/vector4.h"
 
-#if TAKRAM_HAS_BOOST
+#if SHOTAMATSUDA_HAS_BOOST
 
 template <class T, int D>
-struct boost::polygon::geometry_concept<takram::Vec<T, D>> {
+struct boost::polygon::geometry_concept<shotamatsuda::Vec<T, D>> {
   using type = boost::polygon::point_concept;
 };
 
 template <class T, int D>
-struct boost::polygon::point_traits<takram::Vec<T, D>> {
-  using coordinate_type = typename takram::Vec<T, D>::Type;
+struct boost::polygon::point_traits<shotamatsuda::Vec<T, D>> {
+  using coordinate_type = typename shotamatsuda::Vec<T, D>::Type;
 
-  static coordinate_type get(const takram::Vec<T, D>& point,
+  static coordinate_type get(const shotamatsuda::Vec<T, D>& point,
                              boost::polygon::orientation_2d orientation) {
     return orientation == boost::polygon::HORIZONTAL ? point.x : point.y;
   }
 };
 
 template <class T, int D>
-struct boost::polygon::point_mutable_traits<takram::Vec<T, D>> {
-  using coordinate_type = typename takram::Vec<T, D>::Type;
+struct boost::polygon::point_mutable_traits<shotamatsuda::Vec<T, D>> {
+  using coordinate_type = typename shotamatsuda::Vec<T, D>::Type;
 
-  static void set(takram::Vec<T, D>& point,
+  static void set(shotamatsuda::Vec<T, D>& point,
                   boost::polygon::orientation_2d orientation,
                   coordinate_type value) {
     if (orientation == boost::polygon::HORIZONTAL) {
@@ -68,11 +68,11 @@ struct boost::polygon::point_mutable_traits<takram::Vec<T, D>> {
     }
   }
 
-  static takram::Vec<T, D> construct(coordinate_type x, coordinate_type y) {
-    return takram::Vec<T, D>(x, y);
+  static shotamatsuda::Vec<T, D> construct(coordinate_type x, coordinate_type y) {
+    return shotamatsuda::Vec<T, D>(x, y);
   }
 };
 
-#endif  // TAKRAM_HAS_BOOST
+#endif  // SHOTAMATSUDA_HAS_BOOST
 
-#endif  // TAKRAM_MATH_VECTOR_H_
+#endif  // SHOTAMATSUDA_MATH_VECTOR_H_

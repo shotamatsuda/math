@@ -1,9 +1,9 @@
 //
-//  takram/math/line.h
+//  shotamatsuda/math/line.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_LINE2_H_
-#define TAKRAM_MATH_LINE2_H_
+#ifndef SHOTAMATSUDA_MATH_LINE2_H_
+#define SHOTAMATSUDA_MATH_LINE2_H_
 
 #include <cassert>
 #include <cstddef>
@@ -36,11 +36,11 @@
 #include <ostream>
 #include <utility>
 
-#include "takram/math/promotion.h"
-#include "takram/math/side.h"
-#include "takram/math/vector.h"
+#include "shotamatsuda/math/promotion.h"
+#include "shotamatsuda/math/side.h"
+#include "shotamatsuda/math/vector.h"
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
 template <class T, int D>
@@ -156,7 +156,7 @@ using Line2i = Line2<int>;
 using Line2f = Line2<float>;
 using Line2d = Line2<double>;
 
-#pragma mark -
+// MARK: -
 
 template <class T>
 inline Line<T, 2>::Line() : a(), b() {}
@@ -177,19 +177,19 @@ inline Line<T, 2>::Line(std::initializer_list<Vec2<T>> list) : a(), b() {
   set(list);
 }
 
-#pragma mark Implicit conversion
+// MARK: Implicit conversion
 
 template <class T>
 template <class U>
 inline Line<T, 2>::Line(const Line2<U>& other) : a(other.a), b(other.b) {}
 
-#pragma mark Explicit conversion
+// MARK: Explicit conversion
 
 template <class T>
 template <class U>
 inline Line<T, 2>::Line(const Line3<U>& other) : a(other.a), b(other.b) {}
 
-#pragma mark Mutators
+// MARK: Mutators
 
 template <class T>
 inline void Line<T, 2>::set(T x1, T y1, T x2, T y2) {
@@ -230,7 +230,7 @@ inline void Line<T, 2>::reset() {
   *this = Line();
 }
 
-#pragma mark Element access
+// MARK: Element access
 
 template <class T>
 inline Vec2<T>& Line<T, 2>::at(int index) {
@@ -256,7 +256,7 @@ inline const Vec2<T>& Line<T, 2>::at(int index) const {
   return a;
 }
 
-#pragma mark Comparison
+// MARK: Comparison
 
 template <class T, class U>
 inline bool operator==(const Line2<T>& lhs, const Line2<U>& rhs) {
@@ -274,7 +274,7 @@ inline bool Line<T, 2>::equals(const Line2<U>& other, V tolerance) const {
   return a.equals(other.a, tolerance) && b.equals(other.b, tolerance);
 }
 
-#pragma mark Attributes
+// MARK: Attributes
 
 template <class T>
 inline Vec2<Promote<T>> Line<T, 2>::direction() const {
@@ -291,7 +291,7 @@ inline Vec2<Promote<T>> Line<T, 2>::mid() const {
   return (a + b) / 2;
 }
 
-#pragma mark Length
+// MARK: Length
 
 template <class T>
 inline Promote<T> Line<T, 2>::length() const {
@@ -303,7 +303,7 @@ inline Promote<T> Line<T, 2>::lengthSquared() const {
   return a.distanceSquared(b);
 }
 
-#pragma mark Intersection
+// MARK: Intersection
 
 template <class T>
 template <class U>
@@ -323,7 +323,7 @@ inline std::pair<bool, Vec2<Promote<T>>> Line<T, 2>::intersect(
   return std::make_pair(false, Vec2<Promote<T>>());
 }
 
-#pragma mark Projection
+// MARK: Projection
 
 template <class T>
 template <class U>
@@ -349,7 +349,7 @@ inline Side Line<T, 2>::side(const Vec2<U>& point) const {
   return !d ? (d < 0 ? Side::LEFT : Side::RIGHT) : Side::COINCIDENT;
 }
 
-#pragma mark Stream
+// MARK: Stream
 
 template <class T>
 inline std::ostream& operator<<(std::ostream& os, const Line2<T>& line) {
@@ -364,14 +364,14 @@ using math::Line2i;
 using math::Line2f;
 using math::Line2d;
 
-}  // namespace takram
+}  // namespace shotamatsuda
 
 template <class T>
-struct std::hash<takram::math::Line2<T>> {
-  std::size_t operator()(const takram::math::Line2<T>& value) const {
-    std::hash<takram::math::Vec2<T>> hash;
+struct std::hash<shotamatsuda::math::Line2<T>> {
+  std::size_t operator()(const shotamatsuda::math::Line2<T>& value) const {
+    std::hash<shotamatsuda::math::Vec2<T>> hash;
     return (hash(value.a) << 0) ^ (hash(value.b) << 1);
   }
 };
 
-#endif  // TAKRAM_MATH_LINE2_H_
+#endif  // SHOTAMATSUDA_MATH_LINE2_H_

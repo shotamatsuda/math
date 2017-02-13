@@ -1,9 +1,9 @@
 //
-//  takram/math/triangle.h
+//  shotamatsuda/math/side.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,10 +25,46 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_TRIANGLE_H_
-#define TAKRAM_MATH_TRIANGLE_H_
+#ifndef SHOTAMATSUDA_MATH_SIDE_H_
+#define SHOTAMATSUDA_MATH_SIDE_H_
 
-#include "takram/math/triangle2.h"
-#include "takram/math/triangle3.h"
+#include <cassert>
+#include <cstddef>
+#include <functional>
+#include <ostream>
 
-#endif  // TAKRAM_MATH_TRIANGLE_H_
+namespace shotamatsuda {
+namespace math {
+
+enum class Side : int {
+  COINCIDENT = 0,
+  LEFT = 1,
+  RIGHT = 2
+};
+
+inline std::ostream& operator<<(std::ostream& os, Side side) {
+  switch (side) {
+    case Side::COINCIDENT: os << "coincident"; break;
+    case Side::LEFT: os << "left"; break;
+    case Side::RIGHT: os << "right"; break;
+    default:
+      assert(false);
+      break;
+  }
+  return os;
+}
+
+}  // namespace math
+
+using math::Side;
+
+}  // namespace shotamatsuda
+
+template <>
+struct std::hash<shotamatsuda::math::Side> {
+  std::size_t operator()(const shotamatsuda::math::Side& value) const {
+    return static_cast<std::underlying_type<shotamatsuda::math::Side>::type>(value);
+  }
+};
+
+#endif  // SHOTAMATSUDA_MATH_SIDE_H_

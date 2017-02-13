@@ -1,9 +1,9 @@
 //
-//  takram/math/axis.h
+//  shotamatsuda/math/triangle.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,48 +25,10 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_AXIS_H_
-#define TAKRAM_MATH_AXIS_H_
+#ifndef SHOTAMATSUDA_MATH_TRIANGLE_H_
+#define SHOTAMATSUDA_MATH_TRIANGLE_H_
 
-#include <cassert>
-#include <cstddef>
-#include <functional>
-#include <ostream>
+#include "shotamatsuda/math/triangle2.h"
+#include "shotamatsuda/math/triangle3.h"
 
-namespace takram {
-namespace math {
-
-enum class Axis : int {
-  X = 0,
-  Y = 1,
-  Z = 2,
-  W = 3
-};
-
-inline std::ostream& operator<<(std::ostream& os, Axis axis) {
-  switch (axis) {
-    case Axis::X: os << "x"; break;
-    case Axis::Y: os << "y"; break;
-    case Axis::Z: os << "z"; break;
-    case Axis::W: os << "w"; break;
-    default:
-      assert(false);
-      break;
-  }
-  return os;
-}
-
-}  // namespace math
-
-using math::Axis;
-
-}  // namespace takram
-
-template <>
-struct std::hash<takram::math::Axis> {
-  std::size_t operator()(const takram::math::Axis& value) const {
-    return static_cast<std::underlying_type<takram::math::Axis>::type>(value);
-  }
-};
-
-#endif  // TAKRAM_MATH_AXIS_H_
+#endif  // SHOTAMATSUDA_MATH_TRIANGLE_H_

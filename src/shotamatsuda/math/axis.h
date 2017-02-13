@@ -1,9 +1,9 @@
 //
-//  takram/math/side.h
+//  shotamatsuda/math/axis.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,28 +25,30 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_SIDE_H_
-#define TAKRAM_MATH_SIDE_H_
+#ifndef SHOTAMATSUDA_MATH_AXIS_H_
+#define SHOTAMATSUDA_MATH_AXIS_H_
 
 #include <cassert>
 #include <cstddef>
 #include <functional>
 #include <ostream>
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
-enum class Side : int {
-  COINCIDENT = 0,
-  LEFT = 1,
-  RIGHT = 2
+enum class Axis : int {
+  X = 0,
+  Y = 1,
+  Z = 2,
+  W = 3
 };
 
-inline std::ostream& operator<<(std::ostream& os, Side side) {
-  switch (side) {
-    case Side::COINCIDENT: os << "coincident"; break;
-    case Side::LEFT: os << "left"; break;
-    case Side::RIGHT: os << "right"; break;
+inline std::ostream& operator<<(std::ostream& os, Axis axis) {
+  switch (axis) {
+    case Axis::X: os << "x"; break;
+    case Axis::Y: os << "y"; break;
+    case Axis::Z: os << "z"; break;
+    case Axis::W: os << "w"; break;
     default:
       assert(false);
       break;
@@ -56,15 +58,15 @@ inline std::ostream& operator<<(std::ostream& os, Side side) {
 
 }  // namespace math
 
-using math::Side;
+using math::Axis;
 
-}  // namespace takram
+}  // namespace shotamatsuda
 
 template <>
-struct std::hash<takram::math::Side> {
-  std::size_t operator()(const takram::math::Side& value) const {
-    return static_cast<std::underlying_type<takram::math::Side>::type>(value);
+struct std::hash<shotamatsuda::math::Axis> {
+  std::size_t operator()(const shotamatsuda::math::Axis& value) const {
+    return static_cast<std::underlying_type<shotamatsuda::math::Axis>::type>(value);
   }
 };
 
-#endif  // TAKRAM_MATH_SIDE_H_
+#endif  // SHOTAMATSUDA_MATH_AXIS_H_

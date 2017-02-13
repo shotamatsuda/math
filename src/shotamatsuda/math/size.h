@@ -1,9 +1,9 @@
 //
-//  takram/math/circle.h
+//  shotamatsuda/math/size.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,9 +25,10 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_CIRCLE_H_
-#define TAKRAM_MATH_CIRCLE_H_
+#ifndef SHOTAMATSUDA_MATH_SIZE_H_
+#define SHOTAMATSUDA_MATH_SIZE_H_
 
-#include "takram/math/circle2.h"
+#include "shotamatsuda/math/size2.h"
+#include "shotamatsuda/math/size3.h"
 
-#endif  // TAKRAM_MATH_CIRCLE_H_
+#endif  // SHOTAMATSUDA_MATH_SIZE_H_

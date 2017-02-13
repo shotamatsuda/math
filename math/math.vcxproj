@@ -19,35 +19,35 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\takram\math.h" />
-    <ClInclude Include="..\src\takram\math\axis.h" />
-    <ClInclude Include="..\src\takram\math\circle.h" />
-    <ClInclude Include="..\src\takram\math\circle2.h" />
-    <ClInclude Include="..\src\takram\math\constants.h" />
-    <ClInclude Include="..\src\takram\math\enablers.h" />
-    <ClInclude Include="..\src\takram\math\functions.h" />
-    <ClInclude Include="..\src\takram\math\line.h" />
-    <ClInclude Include="..\src\takram\math\line2.h" />
-    <ClInclude Include="..\src\takram\math\line3.h" />
-    <ClInclude Include="..\src\takram\math\promotion.h" />
-    <ClInclude Include="..\src\takram\math\random.h" />
-    <ClInclude Include="..\src\takram\math\rectangle.h" />
-    <ClInclude Include="..\src\takram\math\rectangle2.h" />
-    <ClInclude Include="..\src\takram\math\roots.h" />
-    <ClInclude Include="..\src\takram\math\side.h" />
-    <ClInclude Include="..\src\takram\math\size.h" />
-    <ClInclude Include="..\src\takram\math\size2.h" />
-    <ClInclude Include="..\src\takram\math\size3.h" />
-    <ClInclude Include="..\src\takram\math\triangle.h" />
-    <ClInclude Include="..\src\takram\math\triangle2.h" />
-    <ClInclude Include="..\src\takram\math\triangle3.h" />
-    <ClInclude Include="..\src\takram\math\vector.h" />
-    <ClInclude Include="..\src\takram\math\vector2.h" />
-    <ClInclude Include="..\src\takram\math\vector3.h" />
-    <ClInclude Include="..\src\takram\math\vector4.h" />
+    <ClInclude Include="..\src\shotamatsuda\math.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\axis.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\circle.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\circle2.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\constants.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\enablers.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\functions.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\line.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\line2.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\line3.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\promotion.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\random.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\rectangle.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\rectangle2.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\roots.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\side.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\size.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\size2.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\size3.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\triangle.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\triangle2.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\triangle3.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\vector.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\vector2.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\vector3.h" />
+    <ClInclude Include="..\src\shotamatsuda\math\vector4.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\takram\math.cc" />
+    <ClCompile Include="..\src\shotamatsuda\math.cc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{94341CDF-2064-48A1-BAFB-C21AC3DE3B84}</ProjectGuid>

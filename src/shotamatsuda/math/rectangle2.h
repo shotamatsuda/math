@@ -1,9 +1,9 @@
 //
-//  takram/math/rectangle2.h
+//  shotamatsuda/math/rectangle2.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_RECTANGLE2_H_
-#define TAKRAM_MATH_RECTANGLE2_H_
+#ifndef SHOTAMATSUDA_MATH_RECTANGLE2_H_
+#define SHOTAMATSUDA_MATH_RECTANGLE2_H_
 
 #include <algorithm>
 #include <cassert>
@@ -36,29 +36,29 @@
 #include <ostream>
 #include <utility>
 
-#if TAKRAM_HAS_OPENCV
+#if SHOTAMATSUDA_HAS_OPENCV
 #include "opencv2/core/core.hpp"
-#endif  // TAKRAM_HAS_OPENCV
+#endif  // SHOTAMATSUDA_HAS_OPENCV
 
-#if TAKRAM_HAS_OPENFRAMEWORKS
+#if SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 #include "ofRectangle.h"
-#endif  // TAKRAM_HAS_OPENFRAMEWORKS
+#endif  // SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
-#if TAKRAM_HAS_CINDER
+#if SHOTAMATSUDA_HAS_CINDER
 #include "cinder/Rect.h"
-#endif  // TAKRAM_HAS_CINDER
+#endif  // SHOTAMATSUDA_HAS_CINDER
 
-#if TAKRAM_HAS_COREGRAPHICS
+#if SHOTAMATSUDA_HAS_COREGRAPHICS
 #include <CoreGraphics/CoreGraphics.h>
-#endif  // TAKRAM_HAS_COREGRAPHICS
+#endif  // SHOTAMATSUDA_HAS_COREGRAPHICS
 
-#include "takram/math/enablers.h"
-#include "takram/math/promotion.h"
-#include "takram/math/line.h"
-#include "takram/math/size.h"
-#include "takram/math/vector.h"
+#include "shotamatsuda/math/enablers.h"
+#include "shotamatsuda/math/promotion.h"
+#include "shotamatsuda/math/line.h"
+#include "shotamatsuda/math/size.h"
+#include "shotamatsuda/math/vector.h"
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
 template <class T, int D>
@@ -86,27 +86,27 @@ class Rect<T, 2> final {
   template <class U>
   Rect(const Rect2<U>& other);
 
-#if TAKRAM_HAS_OPENCV
+#if SHOTAMATSUDA_HAS_OPENCV
   template <class U>
   Rect(const cv::Rect_<U>& other);
   operator cv::Rect_<T>() const;
-#endif  // TAKRAM_HAS_OPENCV
+#endif  // SHOTAMATSUDA_HAS_OPENCV
 
-#if TAKRAM_HAS_OPENFRAMEWORKS
+#if SHOTAMATSUDA_HAS_OPENFRAMEWORKS
   Rect(const ofRectangle& other);
   operator ofRectangle() const;
-#endif  // TAKRAM_HAS_OPENFRAMEWORKS
+#endif  // SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
-#if TAKRAM_HAS_CINDER
+#if SHOTAMATSUDA_HAS_CINDER
   template <class U>
   Rect(const ci::RectT<U>& other);
   operator ci::RectT<T>() const;
-#endif  // TAKRAM_HAS_CINDER
+#endif  // SHOTAMATSUDA_HAS_CINDER
 
-#if TAKRAM_HAS_COREGRAPHICS
+#if SHOTAMATSUDA_HAS_COREGRAPHICS
   Rect(const CGRect& other);
   operator CGRect() const;
-#endif  // TAKRAM_HAS_COREGRAPHICS
+#endif  // SHOTAMATSUDA_HAS_COREGRAPHICS
 
   // Copy semantics
   Rect(const Rect&) = default;
@@ -246,7 +246,7 @@ using Rectangle2i = Rect2i;
 using Rectangle2f = Rect2f;
 using Rectangle2d = Rect2d;
 
-#pragma mark -
+// MARK: -
 
 template <class T>
 inline Rect<T, 2>::Rect() : origin(), size() {}
@@ -282,7 +282,7 @@ inline Rect<T, 2>::Rect(const Vec2<T>& p1, const Vec2<T>& p2)
     : origin(std::min(p1.x, p2.x), std::min(p1.y, p2.y)),
       size(std::max(p1.x, p2.x) - origin.x, std::max(p1.y, p2.y) - origin.y) {}
 
-#pragma mark Implicit conversion
+// MARK: Implicit conversion
 
 template <class T>
 template <class U>
@@ -290,7 +290,7 @@ inline Rect<T, 2>::Rect(const Rect2<U>& other)
     : origin(other.origin),
       size(other.size) {}
 
-#if TAKRAM_HAS_COREGRAPHICS
+#if SHOTAMATSUDA_HAS_COREGRAPHICS
 
 template <class T>
 inline Rect<T, 2>::Rect(const CGRect& other)
@@ -302,9 +302,9 @@ inline Rect<T, 2>::operator CGRect() const {
   return CGRectMake(x, y, width, height);
 }
 
-#endif  // TAKRAM_HAS_COREGRAPHICS
+#endif  // SHOTAMATSUDA_HAS_COREGRAPHICS
 
-#if TAKRAM_HAS_OPENCV
+#if SHOTAMATSUDA_HAS_OPENCV
 
 template <class T>
 template <class U>
@@ -317,9 +317,9 @@ inline Rect<T, 2>::operator cv::Rect_<T>() const {
   return ofRectangle(x, y, width, height);
 }
 
-#endif  // TAKRAM_HAS_OPENCV
+#endif  // SHOTAMATSUDA_HAS_OPENCV
 
-#if TAKRAM_HAS_OPENFRAMEWORKS
+#if SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
 template <class T>
 inline Rect<T, 2>::Rect(const ofRectangle& other)
@@ -331,9 +331,9 @@ inline Rect<T, 2>::operator ofRectangle() const {
   return ofRectangle(x, y, width, height);
 }
 
-#endif  // TAKRAM_HAS_OPENFRAMEWORKS
+#endif  // SHOTAMATSUDA_HAS_OPENFRAMEWORKS
 
-#if TAKRAM_HAS_CINDER
+#if SHOTAMATSUDA_HAS_CINDER
 
 template <class T>
 template <class U>
@@ -346,9 +346,9 @@ inline Rect<T, 2>::operator ci::RectT<T>() const {
   return ci::RectT<T>(x, y, x + width, y + height);
 }
 
-#endif  // TAKRAM_HAS_CINDER
+#endif  // SHOTAMATSUDA_HAS_CINDER
 
-#pragma mark Mutators
+// MARK: Mutators
 
 template <class T>
 inline void Rect<T, 2>::set(const Vec2<T>& origin) {
@@ -395,7 +395,7 @@ inline void Rect<T, 2>::reset() {
   *this = Rect();
 }
 
-#pragma mark Comparison
+// MARK: Comparison
 
 template <class T, class U>
 inline bool operator==(const Rect2<T>& lhs, const Rect2<U>& rhs) {
@@ -436,7 +436,7 @@ inline bool Rect<T, 2>::equals(const Rect2<U>& other, V tolerance) const {
           max().equals(other.max(), tolerance));
 }
 
-#pragma mark Attributes
+// MARK: Attributes
 
 template <class T>
 inline Promote<T> Rect<T, 2>::aspect() const {
@@ -463,7 +463,7 @@ inline Vec2<Promote<T>> Rect<T, 2>::centroid() const {
   return origin + size / 2;
 }
 
-#pragma mark Coordinates
+// MARK: Coordinates
 
 template <class T>
 inline T Rect<T, 2>::minX() const {
@@ -495,7 +495,7 @@ inline T Rect<T, 2>::maxY() const {
   return std::max<T>(y, y + height);
 }
 
-#pragma mark Edges
+// MARK: Edges
 
 template <class T>
 inline Line2<T> Rect<T, 2>::leftEdge() const {
@@ -521,7 +521,7 @@ inline Line2<T> Rect<T, 2>::bottomEdge() const {
   return Line2<T>({left(), y}, {right(), y});
 }
 
-#pragma mark Corners
+// MARK: Corners
 
 template <class T>
 inline Vec2<T> Rect<T, 2>::min() const {
@@ -553,7 +553,7 @@ inline Vec2<T> Rect<T, 2>::bottomRight() const {
   return Vec2<T>(right(), bottom());
 }
 
-#pragma mark Canonical form
+// MARK: Canonical form
 
 template <class T>
 inline Rect2<T>& Rect<T, 2>::canonicalize() {
@@ -573,7 +573,7 @@ inline Rect2<Promote<T>> Rect<T, 2>::canonicalized() const {
   return Rect2<Promote<T>>(*this).canonicalize();
 }
 
-#pragma mark Translation
+// MARK: Translation
 
 template <class T>
 template <class U>
@@ -616,7 +616,7 @@ inline Rect2<Promote<T, U>> Rect<T, 2>::translated(
   return Rect2<Promote<T, U>>(*this).translate(offset);
 }
 
-#pragma mark Scaling
+// MARK: Scaling
 
 template <class T>
 template <class U>
@@ -658,7 +658,7 @@ inline Rect2<Promote<T, U>> Rect<T, 2>::scaled(const Vec2<U>& scale) const {
   return Rect2<Promote<T, U>>(*this).scale(scale);
 }
 
-#pragma mark Resizing
+// MARK: Resizing
 
 template <class T>
 inline Rect2<T>& Rect<T, 2>::include(T x, T y) {
@@ -702,7 +702,7 @@ inline Rect2<T>& Rect<T, 2>::include(Iterator first, Iterator last) {
   return *this;
 }
 
-#pragma mark Containment
+// MARK: Containment
 
 template <class T>
 template <class U>
@@ -724,7 +724,7 @@ inline bool Rect<T, 2>::intersects(const Rect2<U>& other) const {
            minY() > other.maxY() || maxY() < other.minY());
 }
 
-#pragma mark Stream
+// MARK: Stream
 
 template <class T>
 inline std::ostream& operator<<(std::ostream& os, const Rect2<T>& rect) {
@@ -745,14 +745,14 @@ using math::Rectangle2i;
 using math::Rectangle2f;
 using math::Rectangle2d;
 
-}  // namespace takram
+}  // namespace shotamatsuda
 
 template <class T>
-struct std::hash<takram::math::Rectangle2<T>> {
-  std::size_t operator()(const takram::math::Rectangle2<T>& value) const {
-    return ((std::hash<takram::math::Vec2<T>>()(value.origin) << 0) ^
-            (std::hash<takram::math::Size2<T>>()(value.size) << 1));
+struct std::hash<shotamatsuda::math::Rectangle2<T>> {
+  std::size_t operator()(const shotamatsuda::math::Rectangle2<T>& value) const {
+    return ((std::hash<shotamatsuda::math::Vec2<T>>()(value.origin) << 0) ^
+            (std::hash<shotamatsuda::math::Size2<T>>()(value.size) << 1));
   }
 };
 
-#endif  // TAKRAM_MATH_RECTANGLE2_H_
+#endif  // SHOTAMATSUDA_MATH_RECTANGLE2_H_

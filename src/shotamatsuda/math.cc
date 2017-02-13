@@ -1,9 +1,9 @@
 //
-//  takram/math/enablers.h
+//  shotamatsuda/math.cc
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -24,31 +24,13 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#pragma once
-#ifndef TAKRAM_MATH_ENABLERS_H_
-#define TAKRAM_MATH_ENABLERS_H_
+#include "shotamatsuda/math.h"
 
-#include <type_traits>
-
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
-template <class T, class U = void>
-using EnableIfScalar = typename std::enable_if<
-    std::is_scalar<T>::value, U>::type;
-template <class T, class U = void>
-using EnableIfIntegral = typename std::enable_if<
-    std::is_integral<T>::value, U>::type;
-template <class T, class U = void>
-using EnableIfFloating = typename std::enable_if<
-    std::is_floating_point<T>::value, U>::type;
+const double version_number = 1.0;
+const unsigned char version_string[] = "1.0";
 
 }  // namespace math
-
-using math::EnableIfScalar;
-using math::EnableIfIntegral;
-using math::EnableIfFloating;
-
-}  // namespace takram
-
-#endif  // TAKRAM_MATH_ENABLERS_H_
+}  // namespace shotamatsuda

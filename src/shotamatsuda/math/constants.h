@@ -1,9 +1,9 @@
 //
-//  takram/math/constants.h
+//  shotamatsuda/math/constants.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,10 +25,10 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_CONSTANTS_H_
-#define TAKRAM_MATH_CONSTANTS_H_
+#ifndef SHOTAMATSUDA_MATH_CONSTANTS_H_
+#define SHOTAMATSUDA_MATH_CONSTANTS_H_
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
 template <class T = double>
@@ -50,7 +50,7 @@ constexpr T degree();
 template <class T = double>
 constexpr T radian();
 
-#pragma mark
+// MARK: -
 
 template <class T>
 inline constexpr T e() {
@@ -98,6 +98,6 @@ inline constexpr T radian() {
 }
 
 }  // namespace math
-}  // namespace takram
+}  // namespace shotamatsuda
 
-#endif  // TAKRAM_MATH_CONSTANTS_H_
+#endif  // SHOTAMATSUDA_MATH_CONSTANTS_H_

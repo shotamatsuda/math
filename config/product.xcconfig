@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2014-2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -24,9 +24,14 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-TAKRAM_MATH_DIR = $(PROJECT_DIR)
+BOOST_DIR = /usr/local
+OPENCV_DIR = /usr/local
+OPENFRAMEWORKS_DIR = $(PROJECT_DIR)/../openframeworks
+CINDER_DIR = $(PROJECT_DIR)/../cinder
+SHOTAMATSUDA_MATH_DIR = $(PROJECT_DIR)
+
 #include "shared.xcconfig"
 
 // Search Paths
-HEADER_SEARCH_PATHS = $(inherited) $(BOOST_HEADER_SEARCH_PATHS) $(OPENCV_HEADER_SEARCH_PATHS) $(OPENFRAMEWORKS_HEADER_SEARCH_PATHS) $(CINDER_HEADER_SEARCH_PATHS)
-USER_HEADER_SEARCH_PATHS = $(inherited) "$(PROJECT_DIR)/src" "$(PROJECT_DIR)/lib"
+HEADER_SEARCH_PATHS = $(inherited) $(SHOTAMATSUDA_MATH_HEADER_SEARCH_PATHS)
+USER_HEADER_SEARCH_PATHS = $(inherited) $(SHOTAMATSUDA_MATH_USER_HEADER_SEARCH_PATHS)

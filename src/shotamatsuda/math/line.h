@@ -1,9 +1,9 @@
 //
-//  takram/math/line.h
+//  shotamatsuda/math/line.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,44 +25,44 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_LINE_H_
-#define TAKRAM_MATH_LINE_H_
+#ifndef SHOTAMATSUDA_MATH_LINE_H_
+#define SHOTAMATSUDA_MATH_LINE_H_
 
-#if TAKRAM_HAS_BOOST
+#if SHOTAMATSUDA_HAS_BOOST
 #include <boost/polygon/isotropy.hpp>
 #include <boost/polygon/segment_concept.hpp>
-#endif  // TAKRAM_HAS_BOOST
+#endif  // SHOTAMATSUDA_HAS_BOOST
 
-#include "takram/math/line2.h"
-#include "takram/math/line3.h"
-#include "takram/math/vector.h"
+#include "shotamatsuda/math/line2.h"
+#include "shotamatsuda/math/line3.h"
+#include "shotamatsuda/math/vector.h"
 
-#if TAKRAM_HAS_BOOST
+#if SHOTAMATSUDA_HAS_BOOST
 
 template <class T, int D>
-struct boost::polygon::geometry_concept<takram::Line<T, D>> {
+struct boost::polygon::geometry_concept<shotamatsuda::Line<T, D>> {
   using type = boost::polygon::segment_concept;
 };
 
 template <class T, int D>
-struct boost::polygon::segment_traits<takram::Line<T, D>> {
-  using point_type = takram::Vec<T, D>;
-  using coordinate_type = typename takram::Line<T, D>::Type;
+struct boost::polygon::segment_traits<shotamatsuda::Line<T, D>> {
+  using point_type = shotamatsuda::Vec<T, D>;
+  using coordinate_type = typename shotamatsuda::Line<T, D>::Type;
 
-  static point_type get(const takram::Line<T, D>& segment,
+  static point_type get(const shotamatsuda::Line<T, D>& segment,
                         boost::polygon::direction_1d direction) {
     return direction == boost::polygon::LOW ? segment.a : segment.b;
   }
 };
 
 template <class T, int D>
-struct boost::polygon::segment_mutable_traits<takram::Line<T, D>> {
-  using point_type = takram::Vec<T, D>;
-  using coordinate_type = typename takram::Line<T, D>::Type;
+struct boost::polygon::segment_mutable_traits<shotamatsuda::Line<T, D>> {
+  using point_type = shotamatsuda::Vec<T, D>;
+  using coordinate_type = typename shotamatsuda::Line<T, D>::Type;
 
-  static void set(takram::Line<T, D>& segment,
+  static void set(shotamatsuda::Line<T, D>& segment,
                   boost::polygon::direction_1d direction,
-                  const takram::Vec<T, D>& point) {
+                  const shotamatsuda::Vec<T, D>& point) {
     if (direction == boost::polygon::LOW) {
       segment.a = point;
     } else {
@@ -70,12 +70,12 @@ struct boost::polygon::segment_mutable_traits<takram::Line<T, D>> {
     }
   }
 
-  static takram::Line<T, D> construct(const takram::Vec<T, D>& low,
-                                      const takram::Vec<T, D>& high) {
-    return takram::Line<T, D>(low, high);
+  static shotamatsuda::Line<T, D> construct(const shotamatsuda::Vec<T, D>& low,
+                                      const shotamatsuda::Vec<T, D>& high) {
+    return shotamatsuda::Line<T, D>(low, high);
   }
 };
 
-#endif  // TAKRAM_HAS_BOOST
+#endif  // SHOTAMATSUDA_HAS_BOOST
 
-#endif  // TAKRAM_MATH_LINE_H_
+#endif  // SHOTAMATSUDA_MATH_LINE_H_

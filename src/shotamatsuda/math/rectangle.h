@@ -1,9 +1,9 @@
 //
-//  takram/math.cc
+//  shotamatsuda/math/rectangle.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -24,13 +24,10 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#include "takram/math.h"
+#pragma once
+#ifndef SHOTAMATSUDA_MATH_RECTANGLE_H_
+#define SHOTAMATSUDA_MATH_RECTANGLE_H_
 
-namespace takram {
-namespace math {
+#include "shotamatsuda/math/rectangle2.h"
 
-const double version_number = 1.0;
-const unsigned char version_string[] = "1.0";
-
-}  // namespace math
-}  // namespace takram
+#endif  // SHOTAMATSUDA_MATH_RECTANGLE_H_

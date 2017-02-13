@@ -1,9 +1,9 @@
 //
-//  takram/math/promotion.h
+//  shotamatsuda/math/promotion.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,12 +25,12 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_PROMOTION_H_
-#define TAKRAM_MATH_PROMOTION_H_
+#ifndef SHOTAMATSUDA_MATH_PROMOTION_H_
+#define SHOTAMATSUDA_MATH_PROMOTION_H_
 
 #include <type_traits>
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
 template <class T>
@@ -50,7 +50,7 @@ struct Promotion1<long double> { using Type = long double; };
 template <>
 struct Promotion1<int> { using Type = double; };
 
-#pragma mark -
+// MARK: -
 
 template <class T, class U>
 struct Promotion2 {
@@ -113,12 +113,12 @@ struct Promotion2<double, long double> { using Type = long double; };
 template <>
 struct Promotion2<long double, double> { using Type = long double; };
 
-#pragma mark -
+// MARK: -
 
 template <class T, class U = T>
 using Promote = typename Promotion2<T, U>::Type;
 
 }  // namespace math
-}  // namespace takram
+}  // namespace shotamatsuda
 
-#endif  // TAKRAM_MATH_PROMOTION_H_
+#endif  // SHOTAMATSUDA_MATH_PROMOTION_H_

@@ -1,9 +1,9 @@
 //
-//  takram/math/rectangle.h
+//  shotamatsuda/math/enablers.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,9 +25,30 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_RECTANGLE_H_
-#define TAKRAM_MATH_RECTANGLE_H_
+#ifndef SHOTAMATSUDA_MATH_ENABLERS_H_
+#define SHOTAMATSUDA_MATH_ENABLERS_H_
 
-#include "takram/math/rectangle2.h"
+#include <type_traits>
 
-#endif  // TAKRAM_MATH_RECTANGLE_H_
+namespace shotamatsuda {
+namespace math {
+
+template <class T, class U = void>
+using EnableIfScalar = typename std::enable_if<
+    std::is_scalar<T>::value, U>::type;
+template <class T, class U = void>
+using EnableIfIntegral = typename std::enable_if<
+    std::is_integral<T>::value, U>::type;
+template <class T, class U = void>
+using EnableIfFloating = typename std::enable_if<
+    std::is_floating_point<T>::value, U>::type;
+
+}  // namespace math
+
+using math::EnableIfScalar;
+using math::EnableIfIntegral;
+using math::EnableIfFloating;
+
+}  // namespace shotamatsuda
+
+#endif  // SHOTAMATSUDA_MATH_ENABLERS_H_

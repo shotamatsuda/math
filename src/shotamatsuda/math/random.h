@@ -1,9 +1,9 @@
 //
-//  takram/math/random.h
+//  shotamatsuda/math/random.h
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -25,8 +25,8 @@
 //
 
 #pragma once
-#ifndef TAKRAM_MATH_RANDOM_H_
-#define TAKRAM_MATH_RANDOM_H_
+#ifndef SHOTAMATSUDA_MATH_RANDOM_H_
+#define SHOTAMATSUDA_MATH_RANDOM_H_
 
 #include <atomic>
 #include <cassert>
@@ -36,9 +36,9 @@
 #include <mutex>
 #include <random>
 
-#include "takram/math/promotion.h"
+#include "shotamatsuda/math/promotion.h"
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
 using DefaultRandomEngine = std::mt19937;
@@ -121,7 +121,7 @@ std::mutex Random<Engine>::shared_mutex_;
 template <class Engine>
 bool Random<Engine>::shared_deleted_;
 
-#pragma mark -
+// MARK: -
 
 template <class Engine>
 inline Random<Engine>::Random() : engine_(std::random_device()()) {}
@@ -129,7 +129,7 @@ inline Random<Engine>::Random() : engine_(std::random_device()()) {}
 template <class Engine>
 inline Random<Engine>::Random(Type seed) : engine_(seed) {}
 
-#pragma mark Shared instance
+// MARK: Shared instance
 
 template <class Engine>
 inline Random<Engine>& Random<Engine>::shared() {
@@ -154,7 +154,7 @@ inline void Random<Engine>::deleteShared() {
   shared_deleted_ = true;
 }
 
-#pragma mark Random generation
+// MARK: Random generation
 
 template <class Engine>
 inline void Random<Engine>::seed(Type value) {
@@ -171,7 +171,7 @@ inline typename Random<Engine>::Type Random<Engine>::next() {
   return engine_();
 }
 
-#pragma mark Distribution
+// MARK: Distribution
 
 template <class Engine>
 template <class T>
@@ -210,7 +210,7 @@ inline T Random<Engine>::gaussian(Promote<T> mean, Promote<T> stddev) {
 
 namespace random {
 
-#pragma mark Random generation
+// MARK: Random generation
 
 template <class Engine>
 inline void seed(typename Random<Engine>::Type value) {
@@ -227,7 +227,7 @@ inline typename Random<Engine>::Type next() {
   return Random<Engine>::shared().next();
 }
 
-#pragma mark Distribution
+// MARK: Distribution
 
 template <class T, class Engine>
 inline T uniform() {
@@ -262,6 +262,6 @@ namespace random = math::random;
 
 using math::Random;
 
-}  // namespace takram
+}  // namespace shotamatsuda
 
-#endif  // TAKRAM_MATH_RANDOM_H_
+#endif  // SHOTAMATSUDA_MATH_RANDOM_H_

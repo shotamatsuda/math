@@ -3,7 +3,7 @@
 //
 //  The MIT License
 //
-//  Copyright (C) 2015 Shota Matsuda
+//  Copyright (C) 2013-2017 Shota Matsuda
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -31,11 +31,11 @@
 
 #include "gtest/gtest.h"
 
-#include "takram/math/promotion.h"
-#include "takram/math/random.h"
-#include "takram/math/vector.h"
+#include "shotamatsuda/math/promotion.h"
+#include "shotamatsuda/math/random.h"
+#include "shotamatsuda/math/vector.h"
 
-namespace takram {
+namespace shotamatsuda {
 namespace math {
 
 template <class T>
@@ -682,4 +682,4 @@ TYPED_TEST(VectorTest, SupportsScalarArithmetic) {
 }
 
 }  // namespace math
-}  // namespace takram
+}  // namespace shotamatsuda

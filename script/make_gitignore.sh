@@ -26,7 +26,7 @@
 #
 
 readonly PROJECT_DIR="$(cd "$(dirname "$0")/../"; pwd)"
-readonly FILES=("Global/OSX" "Global/Windows" "Global/Xcode" "VisualStudio")
+readonly FILES=("Global/macOS" "Global/Windows" "Global/Xcode" "VisualStudio")
 
 repository_dir=$(mktemp -d -t "com.shotamatsuda.gitignore")
 
